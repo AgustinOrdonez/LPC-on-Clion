@@ -11,8 +11,8 @@ community.
 
 - Install [ARM GNU toolchain](https://developer.arm.com/Tools%20and%20Software/GNU%20Toolchain)
 - Configure Clion's toolchain for ARM as a "system"
-  toolchain [CLion's guide](https://www.jetbrains.com/help/clion/how-to-create-toolchain-in-clion.html#env-scripts) you
-  just need to select the compilers and debugger:
+  toolchain ([CLion's guide](https://www.jetbrains.com/help/clion/how-to-create-toolchain-in-clion.html#env-scripts))
+  you just need to select the compilers and debugger:
   ![img.png](Doc/Images/toolchain.png)
 - Download and install LinkServer from
   [here](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/linkserver-for-microcontrollers:LINKERSERVER)
@@ -59,6 +59,13 @@ You can create a new debug configuration at Run->Edit Configurations->Add New Co
 ###### Configure peripheral registers view
 
 If you have an LPC845 you can use the file in `firmware/LPC845.svd` if you have another board you can get it from SDK
-folder at `devices/<device>/<device>.xml` you just need to change the extension to `.svd` 
+folder at `devices/<device>/<device>.xml` you just need to change the extension to `.svd`
 
 Once you are debugging can go to "peripherals" and load the svd file
+
+### Compile for debug and release
+
+You can change the compilation mode, controlling the optimization level and debug symbols, by changing the configuration
+at `Settings->Build, Execution, Deployment->CMake->Build type` `Release` and `RelWithDebInfo` are both optimized for
+speed and `MinSizeRel` is optimized for size
+![img.png](Doc/Images/buildType.png)
