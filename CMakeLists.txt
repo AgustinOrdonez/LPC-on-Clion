@@ -88,6 +88,13 @@ add_link_options(-T ${LINKER_SCRIPT})
 
 add_executable(${PROJECT_NAME}.elf ${SOURCES} ${LINKER_SCRIPT})
 
+target_compile_definitions(${PROJECT_NAME}.elf PRIVATE #IDK which CPU it has, will set it to all
+        CPU_LPC845M301JBD48
+        CPU_LPC845M301JBD64
+        CPU_LPC845M301JHI33
+        CPU_LPC845M301JHI48
+)
+
 set(HEX_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.hex)
 set(BIN_FILE ${PROJECT_BINARY_DIR}/${PROJECT_NAME}.bin)
 

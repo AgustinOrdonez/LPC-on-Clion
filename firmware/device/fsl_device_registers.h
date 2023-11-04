@@ -14,8 +14,8 @@
  *
  * The CPU macro should be declared in the project or makefile.
  */
-//#if (defined(CPU_LPC845M301JBD48) || defined(CPU_LPC845M301JBD64) || defined(CPU_LPC845M301JHI33) || \
-//    defined(CPU_LPC845M301JHI48))
+#if (defined(CPU_LPC845M301JBD48) || defined(CPU_LPC845M301JBD64) || defined(CPU_LPC845M301JHI33) || \
+    defined(CPU_LPC845M301JHI48))
 
 #define LPC845_SERIES
 
@@ -24,9 +24,9 @@
 /* CPU specific feature definitions */
 #include "LPC845_features.h"
 
-//#else
-//    #error "No valid CPU defined!"
-//#endif
+#else
+    #error "No valid CPU defined!"
+#endif
 
 #endif /* __FSL_DEVICE_REGISTERS_H__ */
 
