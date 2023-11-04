@@ -17,7 +17,6 @@ community.
 - Download and install LinkServer from
   [here](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/linkserver-for-microcontrollers:LINKERSERVER)
 
-
 ### How to compile using this repo
 
 When project gets opened for the first time you need to set up ARM toolchain.
@@ -31,7 +30,7 @@ how to configure it for your own NXP board.
   simple MCUXpresso project
 - Create a “ARM GCC / MCUXpresso for VS Code” SDK in [NXP's SDK builder](https://mcuxpresso.nxp.com/en/select) and
   download an example project inside that project copy the equivalent files for the ones this project has on "firmware"
-  directory
+  directory(except for `LPC845.svd`)
 
 Disclaimer: Inside CMakeLists.txt there is a variable called "MCU_DEVICE" which is used for both linker script name and
 also for flashing target, have this in mind if these are different on your board(flashing tutorial below)
@@ -46,6 +45,7 @@ At the top of the CMakeLists.txt file there is a "Flashing settings" section whi
 - SERIAL_PROBE: You need to have your board connected to the computer and run `LinkServer probes`
 
 ##### Set up debugger
+
 You can create a new debug configuration at Run->Edit Configurations->Add New Configuration->Embedded GDB Server
 
 - Target: Project build configuration
@@ -55,3 +55,10 @@ You can create a new debug configuration at Run->Edit Configurations->Add New Co
 - GDB server: The path to the LinkServer executable
 - GDB server args: `gdbserver <DEVICE>:<BOARD> --probe <SERIAL_PROBE>`
   ![img.png](Doc/Images/debugger.png)
+
+###### Configure peripheral registers view
+
+If you have an LPC845 you can use the file in `firmware/LPC845.svd` if you have another board you can get it from SDK
+folder at `devices/<device>/<device>.xml` you just need to change the extension to `.svd` 
+
+Once you are debugging can go to "peripherals" and load the svd file
