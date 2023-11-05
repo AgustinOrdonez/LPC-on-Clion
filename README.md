@@ -75,3 +75,6 @@ at `Settings->Build, Execution, Deployment->CMake->Build type` `Release` and `Re
 speed and `MinSizeRel` is optimized for size
 
 ![img.png](Doc/Images/buildType.png)
+
+## Help/Comments
+For any comment/question feel free to open an issue or a new discussion
