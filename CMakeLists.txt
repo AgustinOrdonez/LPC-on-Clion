@@ -64,16 +64,18 @@ include_directories(
         ${CMAKE_SOURCE_DIR}/firmware/LinkerScript
         ${CMAKE_SOURCE_DIR}/firmware/CMSIS
         ${CMAKE_SOURCE_DIR}/firmware/device
+        ${CMAKE_SOURCE_DIR}/firmware/MCUXpresso
         ${CMAKE_SOURCE_DIR}/src
         #[[ TODO rest of include folder locations
 )
 
 add_definitions(#[[TODO insert definitions, ex. -DUSE_HAL_DRIVER -DCORE_CM4 -DDEBUG -DSTM32H745xx]])
-add_definitions("-DDEBUG -DCODE_RED -DNEWLIB -DCORE_M0PLUS -DMTB_BUFFER_SIZE=256 -DUSE_ROMDIVIDE -DCPP_USE_HEAP -DLPC84X__ ")
+add_definitions("-DDEBUG -DCODE_RED -D__NEWLIB__ -DCORE_M0PLUS -DMTB_BUFFER_SIZE=256 -D__USE_ROMDIVIDE__ -DCPP_USE_HEAP -DLPC84X__ ")
 
 file(GLOB_RECURSE SOURCES CONFIGURE_DEPENDS
         "./firmware/CMSIS/*.*"
         "./firmware/device/*.*"
+        "./firmware/MCUXpresso/*.*"
         "./src/*.cpp"
         "./src/*.c"
         #[[TODO rest of source locations]]
