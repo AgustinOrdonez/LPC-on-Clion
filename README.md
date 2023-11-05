@@ -16,10 +16,12 @@ community.
   ![img.png](Doc/Images/toolchain.png)
 - Download and install LinkServer from
   [here](https://www.nxp.com/design/software/development-software/mcuxpresso-software-and-tools-/linkserver-for-microcontrollers:LINKERSERVER)
+- MCUXpresso or corresponding IDE
 
 ### How to compile using this repo
 
 When project gets opened for the first time you need to set up ARM toolchain.
+
 ![img.png](Doc/Images/projectToolchain.png)
 
 If you have an LPC845 board, you can clone this repository and open it with Clion. If not, you can follow the guide on
@@ -29,8 +31,10 @@ how to configure it for your own NXP board.
 - Modify the CMakeLists.txt with preprocessor definitions and compiler and linker flags you can get by copying from a
   simple MCUXpresso project
 - Create a “ARM GCC / MCUXpresso for VS Code” SDK in [NXP's SDK builder](https://mcuxpresso.nxp.com/en/select) and
-  download an example project inside that project copy the equivalent files for the ones this project has on "firmware"
-  directory(except for `LPC845.svd`)
+  download an example project inside that project copy the equivalent files for the ones this project has
+  on `firmware/CMSIS` and `firmware/device` directories
+- Create a project in MCUXpresso and copy the files there are in `firmware/MCUXpresso` directory to get access to
+  ROMDIVIDE (which is constant time division). ***Note:** There are more files, but they are not on a working state yet*
 
 Disclaimer: Inside CMakeLists.txt there is a variable called "MCU_DEVICE" which is used for both linker script name and
 also for flashing target, have this in mind if these are different on your board(flashing tutorial below)
@@ -54,6 +58,7 @@ You can create a new debug configuration at Run->Edit Configurations->Add New Co
 - target remote: `localhost:3333`(it is default configuration, you can change it with `LinkServer gdbserver --gdb-port`)
 - GDB server: The path to the LinkServer executable
 - GDB server args: `gdbserver <DEVICE>:<BOARD> --probe <SERIAL_PROBE>`
+
   ![img.png](Doc/Images/debugger.png)
 
 ###### Configure peripheral registers view
@@ -68,4 +73,5 @@ Once you are debugging can go to "peripherals" and load the svd file
 You can change the compilation mode, controlling the optimization level and debug symbols, by changing the configuration
 at `Settings->Build, Execution, Deployment->CMake->Build type` `Release` and `RelWithDebInfo` are both optimized for
 speed and `MinSizeRel` is optimized for size
+
 ![img.png](Doc/Images/buildType.png)
